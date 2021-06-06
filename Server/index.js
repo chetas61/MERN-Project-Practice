@@ -1,15 +1,17 @@
+import dotenv from 'dotenv'
 import express from 'express';
 // import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+dotenv.config();
 const app = express();
 app.use(express.json({extended:true}))
 app.use(express.urlencoded());
 
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://user1:useR1MerN@cluster0.aylfa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL,{
